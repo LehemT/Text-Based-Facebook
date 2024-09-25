@@ -1,3 +1,12 @@
+/**
+ * @file functions.c
+ * @author Lehem Temesgen
+ * @version 12/01/2023
+ * @brief A text-based simulation of basic Facebook functionalities.
+ * 
+ * This file contains the implementations of all the functions used to
+ * manage users, their posts and friends in the text-based facebook program.
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -9,11 +18,9 @@
 #define NUM_FEATURES 6
 #define PATTERN_LENGTH 50
 
-// Your solution goes here
-
 /*
-   Function that creates a new user and adds it to a sorted (ascending order) linked list at
-   the proper sorted location. Return the head of the list.
+   Function that creates a new user and adds it to a linked list, sorted in ascending order, at
+   the proper sorted location. Returns the head of the list.
 */
 user_t *add_user(user_t *users, const char *username, const char *password)
 {
@@ -86,8 +93,8 @@ friend_t *create_friend(const char *username)
 
 
 /*
-   Function that links a friend to a user. The friend's name should be added into
-   a sorted (ascending order) linked list.
+   Function that links a friend to a user. The friend's name is added into
+   a linked list, sorted in ascending.
 */
 void add_friend(user_t *user, const char *friend)
 {
@@ -155,8 +162,7 @@ post_t *create_post(const char *text)
 
 
 /*
-   Function that adds a post to a user's timeline. New posts should be added following
-   the stack convention (LIFO) (i.e., to the beginning of the Posts linked list).
+   Function that adds a post to a user's timeline. New posts are be added following LIFO.
 */
 void add_post(user_t *user, const char *text)
 {
@@ -243,8 +249,7 @@ void display_user_friends(user_t *user)
 
 /*
    Function that displays all the posts of 2 users at a time from the database.
-   After displaying 2 users' posts, it prompts if you want to display
-   posts of the next 2 users.
+   After displaying 2 users' posts, it asks the user if they want to display posts of the next 2 users.
    If there are no more post or the user types “n” or “N”, the function returns.
 */
 void display_all_posts(user_t *users)
@@ -279,7 +284,7 @@ void display_all_posts(user_t *users)
 
 
 /*
-   Fucntion that free all users from the database before quitting the application.
+   Fucntion that free all users from the database before terminating the application.
 */
 void teardown(user_t *users)
 {
@@ -335,8 +340,9 @@ void print_menu()
 
 }
 
-
-// prints a pattern of chosen length and character
+/*
+   Function that prints a pattern of a specified length and character, chosen by the user.
+*/
 void print_pattern(unsigned int length, char character){
    printf("\n");
    for(int i = 0; i < length; i++){
@@ -347,21 +353,18 @@ void print_pattern(unsigned int length, char character){
 
 
 /*
-   ******** DONT MODIFY THIS FUNCTION ********
    Function that reads users from the text file.
-   IMPORTANT: This function shouldn't be modified and used as is
-   ******** DONT MODIFY THIS FUNCTION ********
 */
 user_t *read_CSV_and_create_users(FILE *file, int num_users)
 {
     user_t *users = NULL;
     char buffer[500];
-    fgets(buffer, sizeof(buffer), file); // Read and discard the header line
+    fgets(buffer, sizeof(buffer), file);  // read and discard the header line
     int count = 0;
     for (int i = 0; i < num_users; i++)
     {
         fgets(buffer, sizeof(buffer), file);
-        buffer[strcspn(buffer, "\r\n")] = 0; // Remove newline characters
+        buffer[strcspn(buffer, "\r\n")] = 0;  // remove newline characters
 
         char *token = strtok(buffer, ",");
         char *token2 = strtok(NULL, ",");

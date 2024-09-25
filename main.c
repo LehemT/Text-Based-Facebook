@@ -1,3 +1,16 @@
+/**
+ * @file main.c
+ * @author Lehem Temesgen
+ * @version 12/01/2023
+ * @brief A text-based simulation of basic Facebook functionalities.
+ *
+ * This file is the main interface of Facebook simulation, allowing users to: 
+ * - create profiles with a username and password.
+ * - manage a user's profile my changing passwords.
+ * - manage a user's posts; adding, deleting or displaying posts.
+ * - manage a user's friends; adding, deleting or displaying friends.
+ * - display all posts made by all the users in the included database.
+ */
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -12,9 +25,9 @@
 
 int main()
 {
-    /******** DONT MODIFY THIS PART OF THE CODE ********/
-    /* THIS CODE WILL LOAD THE DATABASE OF USERS FROM THE FILE 
-       AND GENERATE THE STARTING LINKED LIST.
+    
+    /* 
+       Loads the database of users from the file and generates the starting linked list.
     */
     FILE *csv_file = fopen("user_details.csv", "r");
     if (csv_file == NULL)
@@ -26,13 +39,9 @@ int main()
     user_t *users = read_CSV_and_create_users(csv_file, 50);
 
     fclose(csv_file);
-    /******** DONT MODIFY THIS PART OF THE CODE ********/
     
-    /* IMPORTANT: You must use the users linked list created in the code above. 
-                  Any new users should be added to that linked list.
-    */
+    /****************************************************************/    
 
-    // Your solution goes here
     print_pattern(PATTERN_LENGTH, '*');
     printf("         Welcome to Text-Based Facebook");
     print_pattern(PATTERN_LENGTH, '*');
